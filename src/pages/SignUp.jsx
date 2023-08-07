@@ -40,7 +40,7 @@ export default function Login(props) {
       navigate("/login");
     } catch (err) {
       console.log(err);
-      err.response.status === 409 ? alert(`Ops, parece que o e-mail ${email} já está cadastrado`) : ''
+      if (err.response.status === 409) return alert(`Ops, parece que o e-mail ${email} já está cadastrado`)
       
     } finally{
       setDisableForm(false)

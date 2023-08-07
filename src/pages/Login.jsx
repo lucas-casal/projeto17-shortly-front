@@ -52,8 +52,8 @@ export default function Login() {
       navigate("/");
     } catch (err) {
       console.log(err);
-      err.response.status === 422 ? alert('Ops, parece que você digitou algo inválido. Tente novamente') : ''
-      err.response.status === 401 ? alert('Ops, há algo de errado com o seu login, verifique o e-mail e a senha digitados') : ''
+      if (err.response.status === 422) return alert('Ops, parece que você digitou algo inválido. Tente novamente')
+      if (err.response.status === 401) return alert('Ops, há algo de errado com o seu login, verifique o e-mail e a senha digitados')
     } finally{
       setDisableForm(false)
     }

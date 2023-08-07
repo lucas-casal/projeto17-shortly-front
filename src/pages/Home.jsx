@@ -37,8 +37,8 @@ export default function Home() {
       setURL('')
     } catch (err) {
       console.log(err); 
-      err.response.status === 409 ? alert(`O url ${URL} já foi encurtado por outro usuário`) : ''
-      err.response.status === 401 ? alert(`Você precisa estar logado para poder fazer essa ação!`) : ''      
+      if (err.response.status === 409) return alert(`O url ${URL} já foi encurtado por outro usuário`) 
+      if (err.response.status === 401) return alert(`Você precisa estar logado para poder fazer essa ação!`)    
     } finally{
       setDisableForm(false)
     }
