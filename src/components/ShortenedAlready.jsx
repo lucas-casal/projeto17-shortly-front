@@ -47,7 +47,9 @@ export default function ShortenedAlready(props) {
         props.setDisableForm(false)
   
       })
-      .catch(console.log)
+      .catch (err)(
+        console.log(err)
+        )
     }
   }
 

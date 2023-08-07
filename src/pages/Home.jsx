@@ -36,8 +36,9 @@ export default function Home() {
       const res = await axios.post(`${import.meta.env.VITE_API_URL}/urls/shorten`, loginInfo, {headers: {Authorization: `Bearer ${token}`}});
       setURL('')
     } catch (err) {
-      console.log(err);
-
+      console.log(err); 
+      err.response.status === 409 ? alert(`O url ${URL} já foi encurtado por outro usuário`) : ''
+      err.response.status === 401 ? alert(`Você precisa estar logado para poder fazer essa ação!`) : ''      
     } finally{
       setDisableForm(false)
     }

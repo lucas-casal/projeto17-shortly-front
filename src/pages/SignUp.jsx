@@ -29,17 +29,19 @@ export default function Login(props) {
 
   useEffect(() => {
   },[disableForm])
+
   async function sendSignUpForm(ev) {
     ev.preventDefault();
     setDisableForm(true)
     const signUpInfo = { name, email, password, confirmPassword };
-
+    if (password !== confirmPassword) return alert('A senha e a confirmação não estão identicas. Tente novamente!')
     try {
       await axios.post(`${import.meta.env.VITE_API_URL}/signup`, signUpInfo)
       navigate("/login");
     } catch (err) {
       console.log(err);
-
+      err.response.status === 409 ? alert(`Ops, parece que o e-mail ${email} já está cadastrado`) : ''
+      
     } finally{
       setDisableForm(false)
     }
